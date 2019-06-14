@@ -1,0 +1,38 @@
+.img-div {
+  width: 600px;
+  background-color: #ccc;
+  // height:100vh;
+  position: fixed;
+  float: left;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.form-div {
+  // width: 30vw;
+  height:100vh;
+  overflow: auto;
+  float:right;
+}
+
+.display-img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.canvas-body{
+  background-color: aqua;
+}
+
+.svg-img{
+  position: absolute;
+}
+
+
+#drawBorderDiv {
+  // background-color: red;
+  border: 1.5px solid red;
+  display: none;
+  z-index: 9999;
+
+}

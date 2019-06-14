@@ -1,0 +1,31 @@
+<div (mousemove)="getCoordinates($event)">
+  <div class="img-div">
+    <!-- <img class="display-img" src="assets/images/sample_doc.jpg"> -->
+    <div id="drawBorderDiv"></div>
+    <mdb-carousel  #carouselRef [isControls]="true" [animation]="'slide'" [interval]="'0'" [activeSlideIndex]="activeSlideIndex">
+        <mdb-carousel-item>
+              <!-- <img class="d-block w-100 display-img" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide"> -->
+          <img class=" d-block w-100 display-img" src="assets/images/sample_doc.jpg">
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+              <!-- <img class="d-block w-100 display-img" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide"> -->
+            <img class="display-img" src="assets/images/sample_doc.jpg">
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+            <img class="display-img" src="assets/images/sample_doc.jpg">
+        </mdb-carousel-item>
+      </mdb-carousel>
+  </div>
+
+
+
+  <div class="form-div">
+    <table>
+      <tr *ngFor="let formItem of formData" (mouseenter)="placeDiv(formItem.coordinates, formItem.pageNo)" (mouseleave)="hideDiv()">
+        <td><label>{{formItem.dataLabel}}</label></td>
+        <td><input [type]="formItem.dataType" [value]="formItem.dataValue"></td>
+      </tr>
+    </table>
+    {{xCoord}},{{yCoord}}
+  </div>
+</div>

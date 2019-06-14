@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "pageNo": 0,
+      "dataLabel": "Policy Number",
+      "dataValue": "12345678",
+      "dataType": "number",
+      "coordinates": {
+        "isPresent": true,
+        "xStart": 43,
+        "yStart": 195,
+        "xEnd": 240,
+        "yEnd": 214
+      }
+    },
+    {
+      "pageNo": 1,
+      "dataLabel": "Policy Holder",
+      "dataValue": "James",
+      "dataType": "text",
+      "coordinates": {
+        "isPresent": true,
+        "xStart": 44,
+        "yStart": 211,
+        "xEnd": 574,
+        "yEnd": 228
+      }
+    }
+  ]
+}

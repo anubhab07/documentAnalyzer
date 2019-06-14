@@ -1,0 +1,29 @@
+<!-- <button><img src="assets/images/upload.png" width="15" height="15">Upload Template</button> -->
+<div class="d-flex justify-content-lg-around mt-5">
+
+  <div class="template-div">
+      <mdb-card class="text-center">
+          <mdb-card-header>Existing Templates</mdb-card-header>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h5>Special title treatment</h5>
+            </mdb-card-title>
+          <!-- <mdb-card-header></mdb-card-header> -->
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+          </mdb-card-body>
+        </mdb-card>
+  </div>
+  <div class="upload-button">
+      <label for="file">
+          <span>
+              <button type="button" mdbBtn color="success" mdbWavesEffect ><img src="assets/images/upload.png" width="15" height="15">&nbsp;Upload Template</button>
+            <input type="file" name="fileTest" id="file" class="inputfile" (change)="uploadImage($event)" accept="application/pdf">
+          </span>
+        </label>
+
+  </div>
+</div>

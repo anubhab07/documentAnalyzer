@@ -1,0 +1,17 @@
+.visitor-img-upload {
+  height: 80px;
+  width: 80px;
+  border-radius: 50px;
+  border: 1px solid #d7dcf7;
+  cursor: pointer;
+  position: relative;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
