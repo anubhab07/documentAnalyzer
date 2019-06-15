@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import { HomeService } from '../home/home.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { HomeService } from '../home/home.service';
   templateUrl: './generate-template.component.html',
   styleUrls: ['./generate-template.component.scss']
 })
-export class GenerateTemplateComponent implements OnInit {
+export class GenerateTemplateComponent implements OnInit,AfterViewInit {
 
   lblList = [];
   bufferX = 8;
@@ -23,6 +23,8 @@ export class GenerateTemplateComponent implements OnInit {
   lblCounter = 1;
   formDataIndex = 0;
 
+  @ViewChild('myCanvas', {static: false}) myCanvas: ElementRef;
+  public context: CanvasRenderingContext2D;
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
@@ -30,18 +32,21 @@ export class GenerateTemplateComponent implements OnInit {
       console.log(res.data);
     });
   }
+  ngAfterViewInit(): void{
+    this.context = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
+  }
 
   InitialXY(e) {
-    this.ax = e.clientX - 11;
-    this.ay = e.clientY - 11;
-    this.dx = e.clientX - 11;
-    this.by = e.clientY - 11;
+    this.ax = e.clientX;
+    this.ay = e.clientY;
+    this.dx = e.clientX;
+    this.by = e.clientY;
   }
   FinalXY(e) {
-    this.cx = e.clientX - 11;
-    this.cy = e.clientY - 11;
-    this.bx = e.clientX - 11;
-    this.dy = e.clientY - 11;
+    this.cx = e.clientX;
+    this.cy = e.clientY;
+    this.bx = e.clientX;
+    this.dy = e.clientY;
     this.enterSaveLabelDetails();
   }
   enterSaveLabelDetails() {
@@ -58,11 +63,11 @@ export class GenerateTemplateComponent implements OnInit {
     this.drawRect(temp);
   }
   drawRect(lbl) {
-    const c = document.getElementById('myCanvas');
-    const ctx = c.getContext('2d');
+    // const c = document.getElementById('myCanvas');
+    const ctx = this.context;
     ctx.strokeStyle = '#FF0000';
     ctx.rect(lbl.xStart, lbl.yStart, lbl.xEnd - lbl.xStart, lbl.yEnd - lbl.yStart);
     ctx.stroke();
-    ctx.strokeText(lbl.lblNum, lbl.xEnd + 10, lbl.yEnd - 10 );
+    ctx.strokeText(lbl.lblNum, lbl.xEnd , lbl.yEnd );
   }
 }
