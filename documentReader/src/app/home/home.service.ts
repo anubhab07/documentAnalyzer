@@ -18,11 +18,12 @@ export class HomeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  uploadFile(file) {
-    const url = 'assets/docs/form-data.json';
+  uploadFile(file, name) {
+    console.log(name);
+    const url = 'http://149.28.153.82:8080/uploadTemplate?templetName=' + name.value;
     const input = new FormData();
     input.append('file', file);
-    this.httpClient.post(url, input, HttpUploadOptions).subscribe((res) => {
+    this.httpClient.post(url, input).subscribe((res) => {
       this.uploadBehavior.next(res);
     });
   }

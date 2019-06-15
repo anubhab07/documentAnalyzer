@@ -29,7 +29,7 @@ export class GenerateTemplateComponent implements OnInit,AfterViewInit {
 
   ngOnInit() {
     this.homeService.uploadBehavior.subscribe(res => {
-      console.log(res.data);
+      console.log(res);
     });
   }
   ngAfterViewInit(): void{

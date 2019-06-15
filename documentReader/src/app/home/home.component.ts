@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   templateLst: ITemplate[] = [];
   isFileUploaded = false;
   getBarcode = false;
+  uploadedTemplate;
   verifyFile;
   uploadedFile;
 
@@ -33,14 +34,14 @@ export class HomeComponent implements OnInit {
   }
 
   uploadImage(event) {
-    const file = event.target.files[0];
-    console.log(file);
+    this.uploadedTemplate = event.target.files[0];
+    // console.log(file);
     this.isFileUploaded = true;
   }
 
   saveImage() {
-    if (this.uploadedFile) {
-      this.homeService.uploadFile(this.uploadedFile);
+    if (this.uploadedTemplate) {
+      this.homeService.uploadFile(this.uploadedTemplate, this.nameForm);
       this.router.navigate(['/generate']);
     }
   }
