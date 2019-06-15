@@ -23,8 +23,16 @@ export class HomeService {
     input.append('file', file);
     return this.httpClient.post(url, input, HttpUploadOptions)
       .pipe(
-        catchError(this.handleError('getUserLocation', []))
+        catchError(this.handleError('uploadFile', []))
       );
+  }
+
+  getAllTemplates() {
+    const url = 'assets/docs/templateList.json';
+    return this.httpClient.get(url)
+    .pipe(
+      catchError(this.handleError('getAllTemplates', []))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

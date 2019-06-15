@@ -1,0 +1,22 @@
+{
+  "status": 1,
+  "message": "",
+  "data": [
+    {
+      "templateId": 1,
+      "templateName": "Template 1"
+    },
+    {
+      "templateId": 2,
+      "templateName": "Template 2"
+    },
+    {
+      "templateId": 3,
+      "templateName": "Template 3"
+    },
+    {
+      "templateId": 4,
+      "templateName": "Template 4"
+    }
+  ]
+}

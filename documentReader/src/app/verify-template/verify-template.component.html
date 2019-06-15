@@ -20,12 +20,36 @@
 
 
   <div class="form-div">
-    <table>
-      <tr *ngFor="let formItem of formData" (mouseenter)="placeDiv(formItem.coordinates, formItem.pageNo)" (mouseleave)="hideDiv()">
-        <td><label>{{formItem.dataLabel}}</label></td>
-        <td><input [type]="formItem.dataType" [value]="formItem.dataValue"></td>
-      </tr>
-    </table>
+  <form>
+    <div class="form-group row"  *ngFor="let formItem of formData; index as i" (mouseenter)="placeDiv(formItem.coordinates, formItem.pageNo)" (mouseleave)="hideDiv()">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">{{formItem.dataLabel}}</label>
+      <div class="col-sm-10">
+        <input mdbInput [type]="formItem.dataType" [id]="i" class="form-control"  [value]="formItem.dataValue" [placeholder]="formItem.dataLabel">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary btn-md">Submit</button>
+      </div>
+    </div>
+  </form>
+
+
+
+
+    <!-- <table>
+      <tr *ngFor="let formItem of formData; index as i" (mouseenter)="placeDiv(formItem.coordinates, formItem.pageNo)" (mouseleave)="hideDiv()">
+        <td>
+          <div class="md-form">
+            <input mdbInput [type]="formItem.dataType" [id]="i" class="form-control"  [value]="formItem.dataValue">
+            <label [for]="i" class="">{{formItem.dataLabel}}</label>
+          </div>
+        </td> -->
+      <!-- <td><label>{{formItem.dataLabel}}</label></td> -->
+        <!-- <td><input [type]="formItem.dataType" [value]="formItem.dataValue"></td> -->
+      <!-- </tr>
+    </table> -->
     {{xCoord}},{{yCoord}}
   </div>
 </div>

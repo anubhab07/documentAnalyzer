@@ -3,27 +3,41 @@
 
   <div class="template-div">
       <mdb-card class="text-center">
-          <mdb-card-header>Existing Templates</mdb-card-header>
+          <mdb-card-header style="background-color: #aa66cc !important; color:white;">Existing Templates</mdb-card-header>
           <mdb-card-body>
-            <mdb-card-title>
+            <!-- <mdb-card-title>
               <h5>Special title treatment</h5>
-            </mdb-card-title>
+            </mdb-card-title> -->
           <!-- <mdb-card-header></mdb-card-header> -->
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+          <ul class="list-group list-group-flush align-">
+            <li class="list-group-item" *ngFor="let templateObj of templateLst">{{templateObj.templateName}}</li>
           </ul>
           </mdb-card-body>
         </mdb-card>
   </div>
   <div class="upload-button">
-      <label for="file">
-          <span>
-              <button type="button" mdbBtn color="success" mdbWavesEffect ><img src="assets/images/upload.png" width="15" height="15">&nbsp;Upload Template</button>
-            <input type="file" name="fileTest" id="file" class="inputfile" (change)="uploadImage($event)" accept="application/pdf">
-          </span>
-        </label>
+    <label for="file">
+      <span>
+        <img
+          class="visitor-img-upload"
+          src="assets/images/upload.png"
+          alt="visitor_img"
+        />
+        <input type="file" name="fileTest" id="file" class="inputfile" (change)="uploadImage($event)" accept="application/pdf">
+      </span>
+    </label>
+    <form [formGroup]="validationForm" *ngIf="isFileUploaded">
+      <div class="md-form" >
+          <input mdbInput mdbValidate formControlName="nameForm" type="text"
+          class="form-control" id="form10">
+        <label for="form10">Template Name</label>
+        <mdb-error *ngIf="nameForm.invalid && (nameForm.dirty || nameForm.touched)">Enter template name
+        </mdb-error>
+      </div>
+      <div class="md-form">
+          <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect (click)="saveImage()">Upload</button>
+        </div>
+    </form>
 
   </div>
 </div>
