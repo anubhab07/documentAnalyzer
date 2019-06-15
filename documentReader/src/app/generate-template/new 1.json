@@ -1,0 +1,37 @@
+data = {
+	[lblNum: 1
+"lblText" : "Proposal Number",
+pageNum: 1,
+xEnd: 227,
+xStart: 71,
+yEnd: 87,
+yStart: 7,6],
+[lblNum: 2,
+lblText: "S,TM Branch"
+pageNum: 1,
+xEnd: 228,
+xStart: 72,
+yEnd: 121
+yStart: 110,],
+[lblNum: 3,
+lblText: "N,ame"
+pageNum: 1,
+xEnd: 293,
+xStart: 72,
+yEnd: 186,
+yStart: 17,3],
+[lblNum: 4,
+lblText: "D,ate Of Birth"
+pageNum: 1,
+xEnd: 213,
+xStart: 72,
+yEnd: 227,
+yStart: 21,2],
+[lblNum: 5,
+lblText: "N,ationality"
+pageNum: 1,
+xEnd: 520
+xStart: 299,
+yEnd: 225,
+"yStart" : "208"]
+}
