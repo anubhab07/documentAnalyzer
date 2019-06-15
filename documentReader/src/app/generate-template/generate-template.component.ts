@@ -9,6 +9,7 @@ import { HomeService } from '../home/home.service';
 export class GenerateTemplateComponent implements OnInit,AfterViewInit {
 
   lblList = [];
+  data = [];
   bufferX = 8;
   bufferY = 8;
   activeSlideIndex = 0;
@@ -52,14 +53,16 @@ export class GenerateTemplateComponent implements OnInit,AfterViewInit {
   enterSaveLabelDetails() {
     const lblText = prompt('Enter Field Name :');
     const temp = { lblNum: null, lblText: null, pageNum: null, isPresent: null, xStart: null, xEnd: null, yStart: null, yEnd: null };
+    const tempdata = { label: null, pageNo: null, startX: null, startY: null, endX: null, endY: null };
     temp.lblNum = this.lblCounter++;
-    temp.lblText = lblText;
-    temp.xStart = this.ax;
-    temp.yStart = this.ay;
-    temp.xEnd = this.cx;
-    temp.yEnd = this.cy;
+    temp.lblText = tempdata.label = lblText;
+    temp.xStart = tempdata.startX = this.ax;
+    temp.yStart = tempdata.startY = this.ay;
+    temp.xEnd = tempdata.endX = this.cx;
+    temp.yEnd = tempdata.endY = this.cy;
     temp.pageNum = 1;
     this.lblList.push(temp);
+    this.data.push(tempdata);
     this.drawRect(temp);
   }
   drawRect(lbl) {
