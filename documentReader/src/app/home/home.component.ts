@@ -5,6 +5,7 @@ import { HomeService } from './home.service';
 import { IFormResponse } from '../interfaces/IFormResponse';
 import { ITemplateResponse } from '../interfaces/ITemplateResponse';
 import { ITemplate } from '../interfaces/ITemplate';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   isFileUploaded = false;
   uploadedFile;
 
-  constructor(private homeService: HomeService, public fb: FormBuilder) {
+  constructor(private homeService: HomeService, public fb: FormBuilder, private router: Router) {
     this.validationForm = fb.group({
       nameForm: [null, Validators.required],
     });
@@ -37,9 +38,8 @@ export class HomeComponent implements OnInit {
 
   saveImage() {
     if (this.uploadedFile) {
-      this.homeService.uploadFile(this.uploadedFile).subscribe(res => {
-        console.log(res);
-      });
+      this.homeService.uploadFile(this.uploadedFile);
+      this.router.navigate(['/generate']);
     }
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
@@ -13,7 +13,7 @@ const HttpUploadOptions = {
   providedIn: 'root'
 })
 export class HomeService {
-
+  uploadBehavior: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,10 +21,9 @@ export class HomeService {
     const url = 'assets/docs/form-data.json';
     const input = new FormData();
     input.append('file', file);
-    return this.httpClient.post(url, input, HttpUploadOptions)
-      .pipe(
-        catchError(this.handleError('uploadFile', []))
-      );
+    this.httpClient.post(url, input, HttpUploadOptions).subscribe((res) => {
+      this.uploadBehavior.next(res);
+    });
   }
 
   getAllTemplates() {
