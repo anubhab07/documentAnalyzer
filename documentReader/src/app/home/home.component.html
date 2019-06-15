@@ -16,6 +16,9 @@
         </mdb-card>
   </div>
   <div class="upload-button">
+      <mdb-card class="text-center">
+          <mdb-card-header style="background-color: #aa66cc !important; color:white;">Upload New Template</mdb-card-header>
+          <mdb-card-body>
     <label for="file">
       <span>
         <img
@@ -38,6 +41,41 @@
           <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect (click)="saveImage()">Upload</button>
         </div>
     </form>
+  </mdb-card-body>
+</mdb-card>
+
+  </div>
+  <div>
+      <mdb-card class="text-center">
+          <mdb-card-header style="background-color: #aa66cc !important; color:white;">Verify Template</mdb-card-header>
+          <mdb-card-body>
+              <label for="file">
+                  <span>
+                    <img
+                      class="visitor-img-upload"
+                      src="assets/images/document.png"
+                      alt="visitor_img"
+                    />
+                    <input type="file" name="fileTest" id="file" class="inputfile" (change)="uploadVerifyTemplate($event)" accept="application/pdf">
+                  </span>
+                </label>
+
+
+
+                <form [formGroup]="validationForm" *ngIf="getBarcode">
+                  <div class="md-form" >
+                      <input mdbInput mdbValidate formControlName="nameForm" type="text"
+                      class="form-control" id="form10">
+                    <label for="form10">Template Name</label>
+                    <mdb-error *ngIf="nameForm.invalid && (nameForm.dirty || nameForm.touched)">Enter template name
+                    </mdb-error>
+                  </div>
+                  <div class="md-form">
+                      <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect (click)="saveImage()">Upload</button>
+                    </div>
+                </form>
+          </mdb-card-body>
+        </mdb-card>
 
   </div>
 </div>

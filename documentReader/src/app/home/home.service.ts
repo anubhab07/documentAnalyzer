@@ -14,14 +14,16 @@ const HttpUploadOptions = {
 })
 export class HomeService {
   uploadBehavior: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  verifyRes: any = null;
 
   constructor(private httpClient: HttpClient) { }
 
-  uploadFile(file) {
-    const url = 'assets/docs/form-data.json';
+  uploadFile(file, name) {
+    console.log(name);
+    const url = 'http://149.28.153.82:8080/uploadTemplate?templetName=' + name.value;
     const input = new FormData();
     input.append('file', file);
-    this.httpClient.post(url, input, HttpUploadOptions).subscribe((res) => {
+    this.httpClient.post(url, input).subscribe((res) => {
       this.uploadBehavior.next(res);
     });
   }
@@ -32,6 +34,13 @@ export class HomeService {
     .pipe(
       catchError(this.handleError('getAllTemplates', []))
     );
+  }
+
+  verifyTemplate(file, barcode) {
+    const url = 'assets/docs/form-data.json?barcode=' + barcode;
+    const input = new FormData();
+    input.append('file', file);
+    return this.httpClient.post(url, input, HttpUploadOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

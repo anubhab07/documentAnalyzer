@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
   fileResult;
   templateLst: ITemplate[] = [];
   isFileUploaded = false;
+  getBarcode = false;
+  uploadedTemplate;
+  verifyFile;
   uploadedFile;
 
   constructor(private homeService: HomeService, public fb: FormBuilder, private router: Router) {
@@ -31,14 +34,14 @@ export class HomeComponent implements OnInit {
   }
 
   uploadImage(event) {
-    const file = event.target.files[0];
-    console.log(file);
+    this.uploadedTemplate = event.target.files[0];
+    // console.log(file);
     this.isFileUploaded = true;
   }
 
   saveImage() {
-    if (this.uploadedFile) {
-      this.homeService.uploadFile(this.uploadedFile);
+    if (this.uploadedTemplate) {
+      this.homeService.uploadFile(this.uploadedTemplate, this.nameForm);
       this.router.navigate(['/generate']);
     }
   }
@@ -51,4 +54,22 @@ export class HomeComponent implements OnInit {
   }
   get nameForm() { return this.validationForm.get('nameForm'); }
 
+  uploadVerifyTemplate(event) {
+    this.verifyFile = event.target.files[0];
+    console.log(this.verifyFile);
+    this.verifyTemplate();
+  }
+
+  verifyTemplate() {
+    const barcode = this.nameForm;
+    this.homeService.verifyTemplate(this.verifyFile, barcode).subscribe((res: IFormResponse) => {
+      if (res.status === 1) {
+        this.homeService.verifyRes = res;
+        this.router.navigate(['/generate']);
+
+      } else if (res.status === 2 ) {
+        this.getBarcode = true;
+      }
+    });
+  }
 }
