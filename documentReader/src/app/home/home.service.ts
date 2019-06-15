@@ -14,6 +14,7 @@ const HttpUploadOptions = {
 })
 export class HomeService {
   uploadBehavior: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  verifyRes: any = null;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,6 +33,13 @@ export class HomeService {
     .pipe(
       catchError(this.handleError('getAllTemplates', []))
     );
+  }
+
+  verifyTemplate(file, barcode) {
+    const url = 'assets/docs/form-data.json?barcode=' + barcode;
+    const input = new FormData();
+    input.append('file', file);
+    return this.httpClient.post(url, input, HttpUploadOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
